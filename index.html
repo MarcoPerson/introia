@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA pour Codeurs Débutants</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1200px;
+            height: 80vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: block;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #4285f4, #34a853, #fbbc04, #ea4335);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: #4285f4;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #4285f4;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .author {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #4285f4;
+            font-weight: 500;
+            margin-top: 40px;
+        }
+
+        .tags {
+            text-align: center;
+            color: #666;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 5px solid #4285f4;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card h4 {
+            font-size: 1.4rem;
+            color: #4285f4;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+        }
+
+        .card li::before {
+            content: '•';
+            color: #4285f4;
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .process-flow {
+            display: flex;
+            color: black;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            gap: 20px;
+        }
+
+        .process-step {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #4285f4;
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .code-block {
+            background: #263238;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .code-block .keyword {
+            color: #c792ea;
+        }
+
+        .code-block .string {
+            color: #c3e88d;
+        }
+
+        .table-container {
+            margin: 30px 0;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .custom-table th {
+            background: #4285f4;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .custom-table td {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .custom-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #3367d6;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .emoji {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        .large-emoji {
+            font-size: 4rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .example-box {
+            background: #e8f5e8;
+            border: 2px solid #34a853;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .example-box h4 {
+            color: #34a853;
+            margin-bottom: 10px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1: Titre -->
+        <div class="slide active">
+            <h1>🤖 Intelligence Artificielle</h1>
+            <h1 style="margin-top: 0;">pour les Codeurs Débutants</h1>
+            <div class="subtitle">Une première immersion pratique et accessible</div>
+            <div class="large-emoji">🧠 👁️ 🗣️</div>
+            <div class="author">Merveilles AGBETI-MESSAN</div>
+            <div class="tags">NLP • LLM • Computer Vision • Recherche</div>
+        </div>
+
+        <!-- Slide 2: L'IA nous entoure -->
+        <div class="slide">
+            <h2>🌍 L'IA nous entoure déjà !</h2>
+            <div class="highlight-box">
+                <h3>Imaginez un monde où les machines...</h3>
+                <div class="process-flow">
+                    <div class="process-step">
+                        <div class="emoji">🧠</div>
+                        <h4>Comprennent</h4>
+                        <p>vos textes</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="emoji">👁️</div>
+                        <h4>Voient</h4>
+                        <p>vos photos</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="emoji">🗣️</div>
+                        <h4>Parlent</h4>
+                        <p>avec vous</p>
+                    </div>
+                </div>
+            </div>
+            <div class="warning-box">
+                <h4>📱 Vous l'utilisez déjà !</h4>
+                <p style="text-align: center;">Google Translate • Filtres Instagram • ChatGPT • Voitures autonomes 🚗</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Objectifs -->
+        <div class="slide">
+            <h2>📌 Ce que vous allez apprendre</h2>
+            <div class="highlight-box">
+                <h3>Votre Parcours d'Apprentissage</h3>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>📝 NLP</h4>
+                    <h3>Traitement du Langage</h3>
+                    <p>Comprendre et analyser le texte humain</p>
+                </div>
+                <div class="card">
+                    <h4>🧠 LLM</h4>
+                    <h3>Modèles de Langage</h3>
+                    <p>Générer du texte intelligent</p>
+                </div>
+                <div class="card">
+                    <h4>👁️ Vision</h4>
+                    <h3>Traitement d'Images</h3>
+                    <p>Analyser et comprendre les images</p>
+                </div>
+            </div>
+            <div class="example-box">
+                <h4>🎁 Prérequis</h4>
+                <p><strong>Aucune compétence en IA requise !</strong> Juste un peu de logique, de curiosité, et quelques bases en Python.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: NLP Introduction -->
+        <div class="slide">
+            <h2>🔍 Le Langage Naturel (NLP)</h2>
+            <div class="highlight-box">
+                <h3>Qu'est-ce que le NLP ?</h3>
+                <p>Le <strong>Traitement Automatique du Langage Naturel</strong> = capacité pour un ordinateur de <strong>lire, comprendre et générer</strong> du texte humain.</p>
+            </div>
+            <div class="two-column">
+                <div class="card">
+                    <h4>📱 Vous l'utilisez déjà !</h4>
+                    <ul>
+                        <li>Correcteurs orthographiques</li>
+                        <li>Chatbots service client</li>
+                        <li>Traductions automatiques</li>
+                        <li>Moteurs de recherche</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>🧠 Comment ça marche ?</h4>
+                    <p>La machine <strong>analyse le texte comme une suite de symboles</strong>, puis applique des techniques statistiques pour en extraire le sens.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Métaphore NLP -->
+        <div class="slide">
+            <h2>👨‍🍳 Métaphore du Cuisinier NLP</h2>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="emoji">📖</div>
+                    <h4>Recette</h4>
+                    <p>(Texte d'entrée)</p>
+                </div>
+                <div class="process-step">
+                    <div class="emoji">🥕</div>
+                    <h4>Ingrédients</h4>
+                    <p>(Mots clés extraits)</p>
+                </div>
+                <div class="process-step">
+                    <div class="emoji">🍽️</div>
+                    <h4>Plat</h4>
+                    <p>(Réponse finale)</p>
+                </div>
+            </div>
+            <div class="card">
+                <h4>🛠️ Outils en coulisse</h4>
+                <ul>
+                    <li><strong>Tokenisation</strong> : Découper le texte en mots</li>
+                    <li><strong>Stop words</strong> : Supprimer les mots inutiles ("le", "de", etc.)</li>
+                    <li><strong>TF-IDF / Word Embeddings</strong> : Donner une importance à chaque mot</li>
+                    <li><strong>SpaCy, NLTK, Transformers</strong> : Bibliothèques Python</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 6: Exercice NLP -->
+        <div class="slide">
+            <h2>🧪 Mini Exercice NLP</h2>
+            <div class="example-box">
+                <h4>Mission</h4>
+                <p>Trouver les mots les plus fréquents dans un texte + quiz "devine la prochaine phrase"</p>
+            </div>
+            <div class="two-column">
+                <div>
+                    <h3>Exemple de Code Python</h3>
+                    <div class="code-block">
+<span class="keyword">import</span> nltk<br>
+<span class="keyword">from</span> collections <span class="keyword">import</span> Counter<br><br>
+text = <span class="string">"L'IA est fascinante..."</span><br>
+words = nltk.word_tokenize(text)<br>
+Counter(words).most_common(5)
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="large-emoji">🔄</div>
+                    <h4>Processus</h4>
+                    <p>Texte → Mots → Analyse → Résultats</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: LLM Introduction -->
+        <div class="slide">
+            <h2>🧠 Les LLM (Large Language Models)</h2>
+            <div class="highlight-box">
+                <h3>C'est quoi un LLM ?</h3>
+                <p>Un <strong>Large Language Model</strong> comme ChatGPT ou Mistral est <strong>entraîné sur des milliards de mots</strong> pour générer du texte... qui a du sens !</p>
+            </div>
+            <div class="two-column">
+                <div class="card">
+                    <h4>🧠 Le Secret</h4>
+                    <p>Il ne <strong>sait pas</strong> ce qu'il dit, mais il <strong>prédit intelligemment</strong> la suite d'une phrase mot après mot.</p>
+                    <div class="example-box">
+                        <h4>🧪 Exemple</h4>
+                        <p><strong>Vous :</strong> "Aujourd'hui je vais..."<br>
+                        <strong>LLM :</strong> "aller faire des courses"<br>
+                        <strong>Pourquoi ?</strong> Suite statistiquement plausible !</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>📝 À quoi ça sert ?</h4>
+                    <ul>
+                        <li>Générer du texte automatique</li>
+                        <li>Créer des résumés intelligents</li>
+                        <li>Compléter du code (GitHub Copilot)</li>
+                        <li>Répondre à des questions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: LLM Processus -->
+        <div class="slide">
+            <h2>🔧 Sous le Capot des LLM</h2>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="emoji">📚</div>
+                    <h4>Pré-entraînement</h4>
+                    <p>Textes du web</p>
+                </div>
+                <div class="process-step">
+                    <div class="emoji">🎯</div>
+                    <h4>Fine-tuning</h4>
+                    <p>Tâches précises</p>
+                </div>
+                <div class="process-step">
+                    <div class="emoji">💬</div>
+                    <h4>Prompting</h4>
+                    <p>Instructions</p>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <h3>💡 Concept Clé</h3>
+                <p>On ne <strong>programme plus</strong> la réponse, on <strong>guide le modèle</strong> avec des exemples !</p>
+            </div>
+            <div class="example-box">
+                <h4>🎮 Exercice</h4>
+                <p>Utiliser un mini LLM open source (comme <code>transformers</code> de Hugging Face) pour compléter des phrases simples.</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Computer Vision -->
+        <div class="slide">
+            <h2>📸 L'IA qui voit : Computer Vision</h2>
+            <div class="highlight-box">
+                <h3>Comment une machine peut-elle "voir" ?</h3>
+                <p>Le <strong>traitement d'images</strong> permet à l'ordinateur d'<strong>analyser le contenu</strong> d'une photo ou vidéo : formes, couleurs, visages, objets...</p>
+            </div>
+            <div class="two-column">
+                <div class="card">
+                    <h4>🎯 Exemples du quotidien</h4>
+                    <ul>
+                        <li>Déverrouillage par reconnaissance faciale</li>
+                        <li>Détection d'objets (voiture autonome)</li>
+                        <li>Lecture de plaques d'immatriculation</li>
+                        <li>Filtres Snapchat/Instagram</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>🔍 Comment ça fonctionne ?</h4>
+                    <ol>
+                        <li>Image = <strong>tableau de pixels</strong> (chiffres !)</li>
+                        <li>IA repère des <strong>formes simples</strong></li>
+                        <li>Puis reconnaît des <strong>motifs complexes</strong></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Vision Outils -->
+        <div class="slide">
+            <h2>🛠️ Outils et Exercice Vision</h2>
+            <div class="card">
+                <h4>Bibliothèques utiles</h4>
+                <ul>
+                    <li><strong>OpenCV</strong> : La boîte à outils du traitement d'image</li>
+                    <li><strong>PIL</strong> : Manipulation basique d'images</li>
+                    <li><strong>YOLO / CNNs</strong> : Pour la détection et classification d'objets</li>
+                </ul>
+            </div>
+            <div class="two-column">
+                <div class="example-box">
+                    <h4>🧪 Exercice Visuel</h4>
+                    <ol>
+                        <li>Charger une image</li>
+                        <li>La convertir en noir et blanc</li>
+                        <li>Détecter les contours</li>
+                    </ol>
+                </div>
+                <div class="card">
+                    <div class="large-emoji">🖼️ → ⚫⚪</div>
+                    <h4>Transformation</h4>
+                    <p>Image originale → Image traitée</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Résumé -->
+        <div class="slide">
+            <h2>📊 Récapitulatif</h2>
+            <div class="table-container">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Domaine</th>
+                            <th>Ce qu'on fait</th>
+                            <th>Exemple concret</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>📝 NLP</td>
+                            <td>Lire et comprendre du texte</td>
+                            <td>Traduction, résumé</td>
+                        </tr>
+                        <tr>
+                            <td>🧠 LLM</td>
+                            <td>Générer du texte intelligent</td>
+                            <td>Chatbot, assistant IA</td>
+                        </tr>
+                        <tr>
+                            <td>👁️ Vision</td>
+                            <td>"Voir" et analyser des images</td>
+                            <td>Détection d'objet, reconnaissance faciale</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-box">
+                <h3>🎯 L'essentiel</h3>
+                <p>L'IA n'est pas magique ! Ce sont des <strong>techniques mathématiques</strong> appliquées à de <strong>grandes quantités de données</strong> pour <strong>reconnaître des motifs</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Format Pédagogique -->
+        <div class="slide">
+            <h2>🎓 Format Pédagogique</h2>
+            <div class="two-column">
+                <div class="card">
+                    <h4>📚 Contenu</h4>
+                    <ul>
+                        <li>📺 Vidéos explicatives courtes (5-10 min)</li>
+                        <li>📄 Fiches de synthèse simples</li>
+                        <li>🖼️ Schémas illustrés</li>
+                        <li>✅ Quiz interactifs</li>
+                        <li>🧪 Mini-projets Python</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="highlight-box">
+                        <h3>🎁 Philosophie</h3>
+                        <p><strong>Pas besoin d'être un expert.</strong><br>
+                        <strong>Il suffit d'être curieux !</strong></p>
+                    </div>
+                    <div class="card">
+                        <h4>🧭 Prochaine étape</h4>
+                        <p>Construire votre <strong>première mini-IA</strong> qui peut parler, voir et penser !</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Questions -->
+        <div class="slide">
+            <div class="large-emoji">🤖</div>
+            <h1 style="text-align: center; margin-top: 50px;">Questions ?</h1>
+            <div class="large-emoji">❓</div>
+            <div class="subtitle">Merci pour votre attention !</div>
+            <div class="author">MERVEILLES - Formateur IA</div>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">13</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">← Précédent</button>
+        <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">Suivant →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            // Mise à jour des boutons
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(n) {
+            if (n > 0 && currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else if (n < 0 && currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Navigation au clavier
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                changeSlide(1);
+            } else if (event.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+
+        // Initialisation
+        showSlide(0);
+    </script>
+</body>
+</html>
