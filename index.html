@@ -41,7 +41,9 @@
         }
 
         .slide.active {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
             animation: slideIn 0.5s ease-in-out;
         }
 
@@ -193,20 +195,6 @@
             position: relative;
         }
 
-        .process-step::after {
-            content: '→';
-            position: absolute;
-            right: -30px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2rem;
-            color: #4285f4;
-        }
-
-        .process-step:last-child::after {
-            display: none;
-        }
-
         .code-block {
             background: #263238;
             color: #fff;
@@ -346,12 +334,11 @@
     <div class="slideshow-container">
         <!-- Slide 1: Titre -->
         <div class="slide active">
-            <h1>🤖 Intelligence Artificielle</h1>
-            <h1 style="margin-top: 0;">pour les Codeurs Débutants</h1>
+            <h1>🤖 Intelligence Artificielle <br> pour les Codeurs Débutants</h1>
             <div class="subtitle">Une première immersion pratique et accessible</div>
             <div class="large-emoji">🧠 👁️ 🗣️</div>
             <div class="author">Merveilles AGBETI-MESSAN</div>
-            <div class="tags">NLP • LLM • Computer Vision • Recherche</div>
+            <div class="tags">NLP • LLM • Computer Vision</div>
         </div>
 
         <!-- Slide 2: L'IA nous entoure -->
@@ -653,7 +640,6 @@ Counter(words).most_common(5)
                 <div class="card">
                     <h4>📚 Contenu</h4>
                     <ul>
-                        <li>📺 Vidéos explicatives courtes (5-10 min)</li>
                         <li>📄 Fiches de synthèse simples</li>
                         <li>🖼️ Schémas illustrés</li>
                         <li>✅ Quiz interactifs</li>
@@ -680,7 +666,7 @@ Counter(words).most_common(5)
             <h1 style="text-align: center; margin-top: 50px;">Questions ?</h1>
             <div class="large-emoji">❓</div>
             <div class="subtitle">Merci pour votre attention !</div>
-            <div class="author">MERVEILLES - Formateur IA</div>
+            <div class="author">Merveilles AGBETI-MESSAN</div>
         </div>
     </div>
 
