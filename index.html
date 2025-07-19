@@ -35,7 +35,7 @@
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            padding: 60px;
+            padding: 30px;
             position: relative;
             overflow: hidden;
         }
@@ -74,14 +74,14 @@
             font-size: 2.5rem;
             font-weight: 400;
             color: #333;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
         h3 {
-            font-size: 1.8rem;
+            font-size: 1rem;
             font-weight: 500;
             color: #4285f4;
             margin-bottom: 20px;
@@ -166,9 +166,9 @@
         .highlight-box {
             background: linear-gradient(135deg, #4285f4, #34a853);
             color: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
-            margin: 30px 0;
+            margin: 20px 0;
             text-align: center;
         }
 
@@ -328,6 +328,41 @@
             color: #856404;
             margin-bottom: 10px;
         }
+
+        .project-box {
+            background: linear-gradient(135deg, #ff9a56, #ff6b6b);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .project-box h4 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .scenario-card {
+            background: white;
+            border: 3px solid #4285f4;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .scenario-card:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -335,337 +370,381 @@
         <!-- Slide 1: Titre -->
         <div class="slide active">
             <h1>🤖 Intelligence Artificielle <br> pour les Codeurs Débutants</h1>
-            <div class="subtitle">Une première immersion pratique et accessible</div>
+            <div class="subtitle">Créez vos premières IA en vous amusant !</div>
             <div class="large-emoji">🧠 👁️ 🗣️</div>
             <div class="author">Merveilles AGBETI-MESSAN</div>
-            <div class="tags">NLP • LLM • Computer Vision</div>
+            <div class="tags">Comprendre • Créer • S'amuser avec l'IA</div>
         </div>
 
         <!-- Slide 2: L'IA nous entoure -->
         <div class="slide">
             <h2>🌍 L'IA nous entoure déjà !</h2>
             <div class="highlight-box">
-                <h3>Imaginez un monde où les machines...</h3>
+                <h3>Imaginez des machines qui...</h3>
                 <div class="process-flow">
                     <div class="process-step">
                         <div class="emoji">🧠</div>
                         <h4>Comprennent</h4>
-                        <p>vos textes</p>
+                        <p>ce que vous écrivez</p>
                     </div>
                     <div class="process-step">
                         <div class="emoji">👁️</div>
-                        <h4>Voient</h4>
-                        <p>vos photos</p>
+                        <h4>Reconnaissent</h4>
+                        <p>ce qu'elles voient</p>
                     </div>
                     <div class="process-step">
                         <div class="emoji">🗣️</div>
-                        <h4>Parlent</h4>
-                        <p>avec vous</p>
+                        <h4>Répondent</h4>
+                        <p>intelligemment</p>
                     </div>
                 </div>
             </div>
             <div class="warning-box">
                 <h4>📱 Vous l'utilisez déjà !</h4>
-                <p style="text-align: center;">Google Translate • Filtres Instagram • ChatGPT • Voitures autonomes 🚗</p>
+                <p style="text-align: center;">Google Translate • Filtres Instagram • Siri/Alexa • Netflix qui devine vos goûts 🎬</p>
             </div>
         </div>
 
-        <!-- Slide 3: Objectifs -->
+        <!-- Slide 3: Les 3 Blocs du Cours -->
         <div class="slide">
-            <h2>📌 Ce que vous allez apprendre</h2>
+            <h2>📌 Les 3 Domaines de l'IA que vous allez maîtriser</h2>
             <div class="highlight-box">
                 <h3>Votre Parcours d'Apprentissage</h3>
+                <p>3 blocs complémentaires pour comprendre l'IA moderne</p>
             </div>
             <div class="card-grid">
                 <div class="card">
-                    <h4>📝 NLP</h4>
-                    <h3>Traitement du Langage</h3>
-                    <p>Comprendre et analyser le texte humain</p>
+                    <h4>📝 NLP - Traitement du Langage</h4>
+                    <h3>Faire comprendre le français aux machines</h3>
+                    <p><strong>Projet :</strong> Chatbot + Analyse de sentiments</p>
+                    <div class="example-box">
+                        <p><em>Tokenisation, analyse sémantique, classification</em></p>
+                    </div>
                 </div>
                 <div class="card">
-                    <h4>🧠 LLM</h4>
-                    <h3>Modèles de Langage</h3>
-                    <p>Générer du texte intelligent</p>
+                    <h4>🧠 LLM - Modèles de Langage</h4>
+                    <h3>Créer une IA qui génère du texte</h3>
+                    <p><strong>Projet :</strong> Mini-ChatGPT personnel</p>
+                    <div class="example-box">
+                        <p><em>Transformers, fine-tuning, prompting</em></p>
+                    </div>
                 </div>
                 <div class="card">
-                    <h4>👁️ Vision</h4>
-                    <h3>Traitement d'Images</h3>
-                    <p>Analyser et comprendre les images</p>
+                    <h4>👁️ Computer Vision</h4>
+                    <h3>Apprendre à "voir" aux machines</h3>
+                    <p><strong>Projet :</strong> Reconnaissance d'objets et visages</p>
+                    <div class="example-box">
+                        <p><em>CNN, détection d'objets, classification d'images</em></p>
+                    </div>
                 </div>
             </div>
-            <div class="example-box">
+            <div class="warning-box">
                 <h4>🎁 Prérequis</h4>
-                <p><strong>Aucune compétence en IA requise !</strong> Juste un peu de logique, de curiosité, et quelques bases en Python.</p>
+                <p><strong>Aucune compétence en IA requise !</strong> Juste de la curiosité et quelques bases en Python.</p>
             </div>
         </div>
 
-        <!-- Slide 4: NLP Introduction -->
+        <!-- Slide 4: NLP en Détail -->
         <div class="slide">
-            <h2>🔍 Le Langage Naturel (NLP)</h2>
+            <h2>🔍 Bloc 1 : NLP (Traitement du Langage Naturel)</h2>
             <div class="highlight-box">
                 <h3>Qu'est-ce que le NLP ?</h3>
-                <p>Le <strong>Traitement Automatique du Langage Naturel</strong> = capacité pour un ordinateur de <strong>lire, comprendre et générer</strong> du texte humain.</p>
+                <p>Le <strong>Natural Language Processing</strong> = donner à un ordinateur la capacité de <strong>lire, comprendre et analyser</strong> du texte humain.</p>
             </div>
             <div class="two-column">
                 <div class="card">
-                    <h4>📱 Vous l'utilisez déjà !</h4>
+                    <h4>📱 Applications Concrètes</h4>
                     <ul>
-                        <li>Correcteurs orthographiques</li>
+                        <li>Correcteurs orthographiques (Grammarly)</li>
                         <li>Chatbots service client</li>
-                        <li>Traductions automatiques</li>
-                        <li>Moteurs de recherche</li>
+                        <li>Traductions automatiques (Google Translate)</li>
+                        <li>Analyse de sentiments (réseaux sociaux)</li>
                     </ul>
                 </div>
                 <div class="card">
-                    <h4>🧠 Comment ça marche ?</h4>
-                    <p>La machine <strong>analyse le texte comme une suite de symboles</strong>, puis applique des techniques statistiques pour en extraire le sens.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 5: Métaphore NLP -->
-        <div class="slide">
-            <h2>👨‍🍳 Métaphore du Cuisinier NLP</h2>
-            <div class="process-flow">
-                <div class="process-step">
-                    <div class="emoji">📖</div>
-                    <h4>Recette</h4>
-                    <p>(Texte d'entrée)</p>
-                </div>
-                <div class="process-step">
-                    <div class="emoji">🥕</div>
-                    <h4>Ingrédients</h4>
-                    <p>(Mots clés extraits)</p>
-                </div>
-                <div class="process-step">
-                    <div class="emoji">🍽️</div>
-                    <h4>Plat</h4>
-                    <p>(Réponse finale)</p>
-                </div>
-            </div>
-            <div class="card">
-                <h4>🛠️ Outils en coulisse</h4>
-                <ul>
-                    <li><strong>Tokenisation</strong> : Découper le texte en mots</li>
-                    <li><strong>Stop words</strong> : Supprimer les mots inutiles ("le", "de", etc.)</li>
-                    <li><strong>TF-IDF / Word Embeddings</strong> : Donner une importance à chaque mot</li>
-                    <li><strong>SpaCy, NLTK, Transformers</strong> : Bibliothèques Python</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Slide 6: Exercice NLP -->
-        <div class="slide">
-            <h2>🧪 Mini Exercice NLP</h2>
-            <div class="example-box">
-                <h4>Mission</h4>
-                <p>Trouver les mots les plus fréquents dans un texte + quiz "devine la prochaine phrase"</p>
-            </div>
-            <div class="two-column">
-                <div>
-                    <h3>Exemple de Code Python</h3>
-                    <div class="code-block">
-<span class="keyword">import</span> nltk<br>
-<span class="keyword">from</span> collections <span class="keyword">import</span> Counter<br><br>
-text = <span class="string">"L'IA est fascinante..."</span><br>
-words = nltk.word_tokenize(text)<br>
-Counter(words).most_common(5)
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="large-emoji">🔄</div>
-                    <h4>Processus</h4>
-                    <p>Texte → Mots → Analyse → Résultats</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 7: LLM Introduction -->
-        <div class="slide">
-            <h2>🧠 Les LLM (Large Language Models)</h2>
-            <div class="highlight-box">
-                <h3>C'est quoi un LLM ?</h3>
-                <p>Un <strong>Large Language Model</strong> comme ChatGPT ou Mistral est <strong>entraîné sur des milliards de mots</strong> pour générer du texte... qui a du sens !</p>
-            </div>
-            <div class="two-column">
-                <div class="card">
-                    <h4>🧠 Le Secret</h4>
-                    <p>Il ne <strong>sait pas</strong> ce qu'il dit, mais il <strong>prédit intelligemment</strong> la suite d'une phrase mot après mot.</p>
-                    <div class="example-box">
-                        <h4>🧪 Exemple</h4>
-                        <p><strong>Vous :</strong> "Aujourd'hui je vais..."<br>
-                        <strong>LLM :</strong> "aller faire des courses"<br>
-                        <strong>Pourquoi ?</strong> Suite statistiquement plausible !</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <h4>📝 À quoi ça sert ?</h4>
+                    <h4>🧠 Techniques Clés</h4>
                     <ul>
-                        <li>Générer du texte automatique</li>
-                        <li>Créer des résumés intelligents</li>
-                        <li>Compléter du code (GitHub Copilot)</li>
-                        <li>Répondre à des questions</li>
+                        <li><strong>Tokenisation :</strong> découper le texte en mots</li>
+                        <li><strong>Lemmatisation :</strong> retrouver la racine des mots</li>
+                        <li><strong>TF-IDF :</strong> mesurer l'importance des mots</li>
+                        <li><strong>Classification :</strong> catégoriser automatiquement</li>
                     </ul>
                 </div>
             </div>
+            <div class="project-box">
+                <h4>🎯 Votre Projet NLP</h4>
+                <p><strong>Analyseur de Sentiments</strong> : "Ce produit est fantastique !" → 😊 Positif (92%)</p>
+            </div>
         </div>
 
-        <!-- Slide 8: LLM Processus -->
+        <!-- Slide 5: Scénario NLP -->
         <div class="slide">
-            <h2>🔧 Sous le Capot des LLM</h2>
+            <h2>💡 Scénario : Analyseur de Commentaires</h2>
+            <div class="project-box">
+                <h4>🎬 Votre Mission</h4>
+                <p>Créer un outil qui analyse automatiquement les avis clients pour savoir s'ils sont contents ou pas !</p>
+            </div>
             <div class="process-flow">
-                <div class="process-step">
-                    <div class="emoji">📚</div>
-                    <h4>Pré-entraînement</h4>
-                    <p>Textes du web</p>
-                </div>
-                <div class="process-step">
-                    <div class="emoji">🎯</div>
-                    <h4>Fine-tuning</h4>
-                    <p>Tâches précises</p>
-                </div>
                 <div class="process-step">
                     <div class="emoji">💬</div>
-                    <h4>Prompting</h4>
-                    <p>Instructions</p>
+                    <h4>Commentaire</h4>
+                    <p>"Ce produit est fantastique !"</p>
+                </div>
+                <div class="process-step">
+                    <div class="emoji">🔍</div>
+                    <h4>Analyse</h4>
+                    <p>Votre IA cherche les mots positifs/négatifs</p>
+                </div>
+                <div class="process-step">
+                    <div class="emoji">😊</div>
+                    <h4>Résultat</h4>
+                    <p>Client satisfait ! 🟢</p>
                 </div>
             </div>
-            <div class="highlight-box">
-                <h3>💡 Concept Clé</h3>
-                <p>On ne <strong>programme plus</strong> la réponse, on <strong>guide le modèle</strong> avec des exemples !</p>
-            </div>
             <div class="example-box">
-                <h4>🎮 Exercice</h4>
-                <p>Utiliser un mini LLM open source (via <code>transformers</code> de Hugging Face) pour compléter des phrases simples.</p>
+                <h4>🛠️ Ce que vous utiliserez</h4>
+                <p>Du Python simple + quelques bibliothèques magiques qui font le gros du travail pour vous !</p>
             </div>
         </div>
 
-        <!-- Slide 9: Computer Vision -->
+        <!-- Slide 6: Bloc 2 : LLM -->
         <div class="slide">
-            <h2>📸 L'IA qui voit : Computer Vision</h2>
+            <h2>🧠 Bloc 2 : LLM (Large Language Models)</h2>
             <div class="highlight-box">
-                <h3>Comment une machine peut-elle "voir" ?</h3>
-                <p>Le <strong>traitement d'images</strong> permet à l'ordinateur d'<strong>analyser le contenu</strong> d'une photo ou vidéo : formes, couleurs, visages, objets...</p>
+                <h3>C'est quoi un LLM ?</h3>
+                <p>Un <strong>Large Language Model</strong> comme ChatGPT ou Claude est <strong>entraîné sur des milliards de textes</strong> pour générer du contenu... qui a du sens !</p>
             </div>
             <div class="two-column">
                 <div class="card">
-                    <h4>🎯 Exemples du quotidien</h4>
-                    <ul>
-                        <li>Déverrouillage par reconnaissance faciale</li>
-                        <li>Détection d'objets (voiture autonome)</li>
-                        <li>Lecture de plaques d'immatriculation</li>
-                        <li>Filtres Snapchat/Instagram</li>
-                    </ul>
+                    <h4>🧠 Le Secret des LLM</h4>
+                    <p>Il ne <strong>"comprend" pas</strong> vraiment, mais il <strong>prédit statistiquement</strong> le mot suivant le plus probable.</p>
+                    <div class="example-box">
+                        <h4>🧪 Exemple</h4>
+                        <p><strong>Prompt :</strong> "Aujourd'hui je vais..."<br>
+                        <strong>LLM :</strong> "aller faire des courses" (probabilité haute)</p>
+                    </div>
                 </div>
                 <div class="card">
-                    <h4>🔍 Comment ça fonctionne ?</h4>
-                    <ol>
-                        <li>Image = <strong>tableau de pixels</strong> (chiffres !)</li>
-                        <li>IA repère des <strong>formes simples</strong></li>
-                        <li>Puis reconnaît des <strong>motifs complexes</strong></li>
-                    </ol>
+                    <h4>🛠️ Techniques Importantes</h4>
+                    <ul>
+                        <li><strong>Pre-training :</strong> apprentissage sur des textes massifs</li>
+                        <li><strong>Fine-tuning :</strong> spécialisation sur des tâches précises</li>
+                        <li><strong>Prompt Engineering :</strong> art de bien formuler les questions</li>
+                        <li><strong>Transformers :</strong> architecture qui révolutionne l'IA</li>
+                    </ul>
                 </div>
+            </div>
+            <div class="project-box">
+                <h4>🎯 Votre Projet LLM</h4>
+                <p><strong>Mini-ChatGPT</strong> : Créer votre propre assistant IA qui génère du texte personnalisé</p>
             </div>
         </div>
 
-        <!-- Slide 10: Vision Outils -->
+        <!-- Slide 7: Bloc 3 : Computer Vision -->
         <div class="slide">
-            <h2>🛠️ Outils et Exercice Vision</h2>
-            <div class="card">
-                <h4>Bibliothèques utiles</h4>
-                <ul>
-                    <li><strong>OpenCV</strong> : La boîte à outils du traitement d'image</li>
-                    <li><strong>PIL</strong> : Manipulation basique d'images</li>
-                    <li><strong>YOLO / CNNs</strong> : Pour la détection et classification d'objets</li>
-                </ul>
+            <h2>📸 Bloc 3 : Computer Vision (Vision par Ordinateur)</h2>
+            <div class="highlight-box">
+                <h3>Comment une machine peut-elle "voir" ?</h3>
+                <p>La <strong>Computer Vision</strong> permet à l'ordinateur d'<strong>analyser et comprendre le contenu</strong> d'images et vidéos : formes, objets, visages, scènes...</p>
+            </div>
+            <div class="two-column">
+                <div class="card">
+                    <h4>🎯 Applications du Quotidien</h4>
+                    <ul>
+                        <li>Déverrouillage par reconnaissance faciale</li>
+                        <li>Détection d'objets (voitures autonomes)</li>
+                        <li>Filtres Snapchat/Instagram en temps réel</li>
+                        <li>Diagnostic médical par imagerie</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>🛠️ Techniques Fondamentales</h4>
+                    <ul>
+                        <li><strong>CNN (Réseaux Convolutifs) :</strong> architecture spécialisée images</li>
+                        <li><strong>Classification :</strong> "C'est un chat ou un chien ?"</li>
+                        <li><strong>Détection d'objets :</strong> localiser ET identifier</li>
+                        <li><strong>Segmentation :</strong> découper l'image par zones</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="project-box">
+                <h4>🎯 Votre Projet Vision</h4>
+                <p><strong>Classificateur d'Images</strong> : Glissez une photo → "Je vois un chat (95% de confiance)"</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Scénario Vision -->
+        <div class="slide">
+            <h2>📱 Scénario : App de Tri Automatique</h2>
+            <div class="project-box">
+                <h4>📂 Votre Mission</h4>
+                <p>Créer une app qui trie automatiquement vos photos : vacances, famille, nourriture, animaux...</p>
+            </div>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="emoji">📷</div>
+                    <h4>Photo</h4>
+                    <p>Image de votre chat</p>
+                </div>
+                <div class="process-step">
+                    <div class="emoji">🔍</div>
+                    <h4>Analyse</h4>
+                    <p>Votre IA repère les formes et couleurs</p>
+                </div>
+                <div class="process-step">
+                    <div class="emoji">📂</div>
+                    <h4>Classement</h4>
+                    <p>→ Dossier "Animaux"</p>
+                </div>
             </div>
             <div class="two-column">
                 <div class="example-box">
-                    <h4>🧪 Exercice Visuel</h4>
-                    <ol>
-                        <li>Charger une image</li>
-                        <li>La convertir en noir et blanc</li>
-                        <li>Détecter les contours</li>
-                    </ol>
+                    <h4>🛠️ Outils Simples</h4>
+                    <p>Python + quelques lignes de code + IA pré-entraînée = Magie ! ✨</p>
                 </div>
                 <div class="card">
-                    <div class="large-emoji">🖼️ → ⚫⚪</div>
-                    <h4>Transformation</h4>
-                    <p>Image originale → Image traitée</p>
+                    <h4>💡 Bonus</h4>
+                    <p>Vous pourrez même détecter les émotions sur les visages ! 😊😢😡</p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 11: Résumé -->
+        <!-- Slide 9: Résumé des 3 Blocs -->
         <div class="slide">
-            <h2>📊 Récapitulatif</h2>
+            <h2>📊 Récapitulatif des 3 Blocs IA</h2>
             <div class="table-container">
                 <table class="custom-table">
                     <thead>
                         <tr>
-                            <th>Domaine</th>
-                            <th>Ce qu'on fait</th>
-                            <th>Exemple concret</th>
+                            <th>Bloc</th>
+                            <th>Ce que vous apprenez</th>
+                            <th>Projet Concret</th>
+                            <th>Techniques Clés</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>📝 NLP</td>
-                            <td>Lire et comprendre du texte</td>
-                            <td>Traduction, résumé</td>
+                            <td>📝 <strong>NLP</strong></td>
+                            <td>Analyser et comprendre du texte</td>
+                            <td>Analyseur de sentiments</td>
+                            <td>Tokenisation, TF-IDF, Classification</td>
                         </tr>
                         <tr>
-                            <td>🧠 LLM</td>
+                            <td>🧠 <strong>LLM</strong></td>
                             <td>Générer du texte intelligent</td>
-                            <td>Chatbot, assistant IA</td>
+                            <td>Mini-ChatGPT personnel</td>
+                            <td>Transformers, Fine-tuning, Prompting</td>
                         </tr>
                         <tr>
-                            <td>👁️ Vision</td>
+                            <td>👁️ <strong>Vision</strong></td>
                             <td>"Voir" et analyser des images</td>
-                            <td>Détection d'objet, reconnaissance faciale</td>
+                            <td>Classificateur d'images</td>
+                            <td>CNN, Détection d'objets, Segmentation</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="highlight-box">
-                <h3>🎯 L'essentiel</h3>
-                <p>L'IA n'est pas magique ! Ce sont des <strong>techniques mathématiques</strong> appliquées à de <strong>grandes quantités de données</strong> pour <strong>reconnaître des motifs</strong>.</p>
+                <h3>🎯 L'essentiel à retenir</h3>
+                <p>Ces 3 blocs couvrent <strong>90% des applications IA modernes</strong>. Chaque bloc utilise des <strong>techniques mathématiques spécialisées</strong> appliquées à de <strong>grandes quantités de données</strong>.</p>
             </div>
         </div>
 
-        <!-- Slide 12: Format Pédagogique -->
+        <!-- Slide 10: Méthode Pédagogique -->
         <div class="slide">
-            <h2>🎓 Format Pédagogique</h2>
+            <h2>🎓 Comment on va y arriver ?</h2>
             <div class="two-column">
                 <div class="card">
-                    <h4>📚 Contenu</h4>
+                    <h4>📚 Méthode Simple</h4>
                     <ul>
-                        <li>📄 Fiches de synthèse simples</li>
-                        <li>🖼️ Schémas illustrés</li>
-                        <li>✅ Quiz interactifs</li>
-                        <li>🧪 Mini-projets Python</li>
+                        <li>🎯 Chaque cours = 1 projet concret</li>
+                        <li>📝 Explications en français simple</li>
+                        <li>🧪 Vous codez en même temps que moi</li>
+                        <li>✅ Tests immédiats de votre IA</li>
                     </ul>
                 </div>
                 <div>
                     <div class="highlight-box">
-                        <h3>🎁 Philosophie</h3>
-                        <p><strong>Pas besoin d'être un expert.</strong><br>
-                        <strong>Il suffit d'être curieux !</strong></p>
+                        <h3>🎁 Ma Philosophie</h3>
+                        <p><strong>Zéro jargon technique inutile.</strong><br>
+                        <strong>100% pratique et amusant !</strong></p>
                     </div>
-                    <div class="card">
-                        <h4>🧭 Objectif </h4>
-                        <p>Construire votre <strong>première mini-IA</strong> qui peut parler, voir et penser !</p>
+                    <div class="example-box">
+                        <h4>💝 Prérequis</h4>
+                        <p>Savoir écrire un "Hello World" en Python suffit. Le reste, on l'apprend ensemble !</p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Déroulé du Cours par Blocs -->
+        <div class="slide">
+            <h2>🗓️ Plan de Vol : 6 Semaines, 3 Blocs</h2>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="emoji">📝</div>
+                    <h4>Semaines 1-2</h4>
+                    <p><strong>Bloc NLP</strong><br>Analyseur de sentiments + Chatbot basique</p>
+                </div>
+                <div class="process-step">
+                    <div class="emoji">🧠</div>
+                    <h4>Semaines 3-4</h4>
+                    <p><strong>Bloc LLM</strong><br>Mini-ChatGPT + Générateur de contenu</p>
+                </div>
+                <div class="process-step">
+                    <div class="emoji">👁️</div>
+                    <h4>Semaines 5-6</h4>
+                    <p><strong>Bloc Vision</strong><br>Classificateur + Détecteur d'objets</p>
+                </div>
+            </div>
+            <div class="card-grid">
+                <div class="example-box">
+                    <h4>🎮 Format</h4>
+                    <p>2h par semaine : 1h théorie simplifiée + 1h pratique guidée avec du vrai code</p>
+                </div>
+                <div class="project-box">
+                    <h4>🏆 Objectif Final</h4>
+                    <p>Une <strong>boîte à outils IA complète</strong> couvrant texte, génération et images !</p>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <h3>💡 Progression Intelligente</h3>
+                <p>Chaque bloc s'appuie sur le précédent. À la fin, vous combinez les 3 pour créer des applications IA complexes !</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Après le Cours -->
+        <div class="slide">
+            <h2>🚀 Et Après ?</h2>
+            <div class="highlight-box">
+                <h3>Vous serez capable de...</h3>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>🛠️ Créer</h4>
+                    <p>Vos propres outils IA pour résoudre VOS problèmes du quotidien</p>
+                </div>
+                <div class="card">
+                    <h4>🧠 Comprendre</h4>
+                    <p>Comment fonctionne vraiment l'IA (sans la magie !)</p>
+                </div>
+                <div class="card">
+                    <h4>📈 Évoluer</h4>
+                    <p>Vers des projets plus complexes en toute confiance</p>
+                </div>
+            </div>
+            <div class="project-box">
+                <h4>💡 Idées de Projets Futurs</h4>
+                <p>Assistant IA pour votre entreprise • App de traduction • Détecteur de fake news • Recommandations personnalisées</p>
             </div>
         </div>
 
         <!-- Slide 13: Questions -->
         <div class="slide">
             <div class="large-emoji">🤖</div>
-            <h1 style="text-align: center; margin-top: 50px;">Questions ?</h1>
+            <h1 style="text-align: center; margin-top: 50px;">Prêts à créer votre première IA ?</h1>
             <div class="large-emoji">❓</div>
-            <div class="subtitle">Merci pour votre attention !</div>
+            <div class="subtitle">Questions ? C'est parti pour l'aventure !</div>
             <div class="author">Merveilles AGBETI-MESSAN</div>
         </div>
     </div>
