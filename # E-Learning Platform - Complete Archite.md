@@ -1,65 +1,65 @@
-# E-Learning Platform - Complete Architecture & Development Plan
+# Plateforme E-Learning - Architecture Complète & Plan de Développement
 
-## 🏗 Overall Architecture
+## 🏗 Architecture Générale
 
-### Frontend Stack (Angular 20+)
-- **Framework**: Angular 20+ with standalone components
-- **UI Framework**: PrimeNg + Tailwind CSS
-- **State Management**: Angular Signals
-- **Routing**: Angular Router with guards
-- **Forms**: Angular Reactive Forms
-- **HTTP Client**: Angular HttpClient with interceptors
-- **Authentication**: JWT with refresh tokens
-- **Video Player**: Video.js
-- **Charts**: Chart.js
-- **Markdown Processing**: Marked.js for markdown parsing and rendering
-- **File Upload**: primeng
-- **Notifications**: PrimeNg toast + Push notifications
-- **PWA**: Angular Service Worker
-- **Testing**: Playwright
+### Stack Frontend (Angular 20+)
+- **Framework** : Angular 20+ avec composants autonomes
+- **Framework UI** : PrimeNg + Tailwind CSS
+- **Gestion d'État** : Angular Signals
+- **Routage** : Angular Router avec guards
+- **Formulaires** : Angular Reactive Forms
+- **Client HTTP** : Angular HttpClient avec intercepteurs
+- **Authentification** : JWT avec tokens de rafraîchissement
+- **Lecteur Vidéo** : Video.js
+- **Graphiques** : Chart.js
+- **Traitement Markdown** : Marked.js pour l'analyse et le rendu markdown
+- **Upload de Fichiers** : primeng
+- **Notifications** : PrimeNg toast + Notifications push
+- **PWA** : Angular Service Worker
+- **Tests** : Playwright
 
-### Backend Stack (FastAPI)
-- **Framework**: FastAPI with Python 3.11+
-- **Database**: PostgreSQL with asyncpg
-- **ORM**: SQLAlchemy 2.0 (async)
-- **Authentication**: JWT with passlib + OAuth2 (Google, Microsoft, GitHub)
-- **OAuth Libraries**: authlib
-- **File Storage**: Azure Blob Storage
-- **Caching**: Redis
-- **Task Queue**: Celery with Redis broker
-- **Email**: Mailchimp
-- **Video Processing**: FFmpeg
-- **Search**: Elasticsearch (optional for advanced search)
-- **Monitoring**: Prometheus + Grafana
-- **Documentation**: FastAPI automatic OpenAPI
-- **Testing**: pytest + pytest-asyncio
+### Stack Backend (FastAPI)
+- **Framework** : FastAPI avec Python 3.11+
+- **Base de Données** : PostgreSQL avec asyncpg
+- **ORM** : SQLAlchemy 2.0 (async)
+- **Authentification** : JWT avec passlib + OAuth2 (Google, Microsoft, GitHub)
+- **Bibliothèques OAuth** : authlib
+- **Stockage de Fichiers** : Azure Blob Storage
+- **Cache** : Redis
+- **Queue de Tâches** : Celery avec courtier Redis
+- **Email** : Mailchimp
+- **Traitement Vidéo** : FFmpeg
+- **Recherche** : Elasticsearch (optionnel pour recherche avancée)
+- **Surveillance** : Prometheus + Grafana
+- **Documentation** : FastAPI OpenAPI automatique
+- **Tests** : pytest + pytest-asyncio
 
 ### Infrastructure & DevOps
-- **Containerization**: Docker + Docker Compose
-- **Cloud**: Azure (App Service, Database, Blob Storage)
-- **CI/CD**: GitHub Actions or Azure DevOps
-- **Reverse Proxy**: Nginx
-- **SSL**: Let's Encrypt
-- **Monitoring**: Application Insights
+- **Conteneurisation** : Docker + Docker Compose
+- **Cloud** : Azure (App Service, Database, Blob Storage)
+- **CI/CD** : GitHub Actions ou Azure DevOps
+- **Proxy Inverse** : Nginx
+- **SSL** : Let's Encrypt
+- **Surveillance** : Application Insights
 
-## 📊 Database Schema Design
+## 📊 Conception du Schéma de Base de Données
 
-### Core Tables
+### Tables Principales
 ```sql
--- Users and Authentication
+-- Utilisateurs et Authentification
 users (id, email, password_hash, role, is_active, email_verified, timezone, login_count, last_login, marketing_emails,terms_accepted, terms_accepted_at,  suspended, suspended_at, suspended_reason, deletion_requested, deletion_requested_at, created_at, updated_at)
 user_profiles (user_id, first_name, last_name, bio, profession, photo_url, objectives, phone, website, linkedin_url, github_url, country, city, postal_code, company, job_title, experience_level, years_experience, industry, created_at, updated_at)
 user_sessions (id, user_id, token, expires_at, created_at, is_suspicious, requires_verification, verified_at)
 oauth_accounts (id, user_id, provider, provider_user_id, access_token, refresh_token, created_at)
 
--- Courses and Content
+-- Cours et Contenu
 courses (id, title, description, level, duration, certification, created_by, is_active, category, subcategory, language, price, discount_price, thumbnail_url, trailer_video_url, prerequisites, learning_objectives, target_audience, tags, enrollment_count, average_rating, review_count, completion_rate, difficulty_score, estimated_effort, created_at, updated_at, published_at, free_preview)
 course_modules (id, course_id, title, description, order_index, is_active, duration_minutes, learning_objectives, is_free_preview, prerequisite_modules, difficulty_level, module_type, estimated_effort, completion_criteria)
 lessons (id, module_id, title, content, video_url, resources, order_index, duration_minutes, is_published, is_free_preview, created_at, updated_at)
 quizzes (id, lesson_id, title, questions, passing_score, shuffle_questions, shuffle_answers, created_at, updated_at)
 assignments (id, lesson_id, title, description, max_score, due_date, submission_format, allowed_file_types, is_active, created_at, updated_at)
 
--- Progress and Analytics
+-- Progression et Analyses
 user_course_enrollments (user_id, course_id, enrolled_at, completed_at, progress_percentage, enrollment_type, payment_status, payment_amount, currency, discount_applied, coupon_code, current_lesson_id, last_accessed, modules_completed, lessons_completed, quizzes_completed, assignments_completed, is_favorite, certificate_issued, certificate_issued_at, certificate_url, average_quiz_score, average_assignment_score, course_rating, course_review)
 lesson_progress (user_id, lesson_id, completed_at, time_spent, status, progress_percentage, first_accessed, last_accessed, video_progress, video_completed)
 quiz_attempts (id, user_id, quiz_id, score, answers, attempted_at)
@@ -70,33 +70,33 @@ user_xp (user_id, total_xp, daily_streak, last_activity)
 badges (id, name, description, criteria, icon_url)
 user_badges (user_id, badge_id, earned_at)
 
--- Mentoring
+-- Mentorat
 mentor_assignments (mentor_id, student_id, assigned_at)
 appointments (id, mentor_id, student_id, scheduled_at, duration, meeting_url, status)
 chat_messages (id, sender_id, receiver_id, message, sent_at, read_at)
 
--- Community
+-- Communauté
 forum_topics (id, course_id, user_id, title, content, created_at)
 forum_replies (id, topic_id, user_id, content, created_at, votes)
 ```
 
-## 🎨 Frontend Architecture
+## 🎨 Architecture Frontend
 
-### Project Structure
+### Structure du Projet
 ```
 src/
 ├── app/
-│   ├── core/                    # Singleton services, guards, interceptors
+│   ├── core/                    # Services singleton, guards, intercepteurs
 │   │   ├── guards/
 │   │   ├── interceptors/
 │   │   ├── services/
 │   │   └── models/
-│   ├── shared/                  # Reusable components, directives, pipes
+│   ├── shared/                  # Composants réutilisables, directives, pipes
 │   │   ├── components/
 │   │   ├── directives/
 │   │   ├── pipes/
 │   │   └── utils/
-│   ├── features/                # Feature modules
+│   ├── features/                # Modules de fonctionnalités
 │   │   ├── auth/
 │   │   ├── dashboard/
 │   │   ├── courses/
@@ -105,7 +105,7 @@ src/
 │   │   ├── profile/
 │   │   ├── admin/
 │   │   └── community/
-│   ├── layout/                  # Layout components
+│   ├── layout/                  # Composants de mise en page
 │   └── app.component.ts
 ├── assets/
 ├── environments/
@@ -114,76 +114,76 @@ src/
     └── components/
 ```
 
-### Shared Components & Services
+### Composants et Services Partagés
 
-**Markdown Processing:**
-- Markdown parser service using Marked.js
-- Syntax highlighting with highlight.js
-- Custom markdown renderer component
-- Markdown editor with live preview
-- Support for LaTeX math expressions (optional)
+**Traitement Markdown :**
+- Service d'analyse markdown utilisant Marked.js
+- Coloration syntaxique avec highlight.js
+- Composant de rendu markdown personnalisé
+- Éditeur markdown avec aperçu en direct
+- Support des expressions mathématiques LaTeX (optionnel)
 
-**Content Creation Tools:**
-- Markdown-based course content editor
-- Live preview for instructors
-- Markdown templates for common content types
-- File upload integration for images/attachments
+**Outils de Création de Contenu :**
+- Éditeur de contenu de cours basé sur markdown
+- Aperçu en direct pour les instructeurs
+- Modèles markdown pour les types de contenu courants
+- Intégration d'upload de fichiers pour images/pièces jointes
 
-### Key Components Architecture
+### Architecture des Composants Clés
 
-**Authentication Module**
-- Login/Register components with email/password
-- OAuth integration (Google, Microsoft/Hotmail, GitHub)
-- Social login buttons and callbacks
-- Password reset for email accounts
-- Account linking (merge OAuth with existing accounts)
-- Route guards (AuthGuard, RoleGuard)
+**Module d'Authentification**
+- Composants de connexion/inscription avec email/mot de passe
+- Intégration OAuth (Google, Microsoft/Hotmail, GitHub)
+- Boutons de connexion sociale et callbacks
+- Réinitialisation de mot de passe pour les comptes email
+- Liaison de comptes (fusion OAuth avec comptes existants)
+- Guards de route (AuthGuard, RoleGuard)
 
-**Content Management Module**
-- Markdown-based content editor
-- Live markdown preview
-- Syntax highlighting for code blocks
-- Image/file upload integration
-- Content versioning and drafts
+**Module de Gestion de Contenu**
+- Éditeur de contenu basé sur markdown
+- Aperçu markdown en direct
+- Coloration syntaxique pour les blocs de code
+- Intégration d'upload d'images/fichiers
+- Versioning de contenu et brouillons
 
-**Dashboard Module**
-- Personal dashboard
-- Progress tracking
-- Upcoming appointments
-- Notifications center
+**Module Tableau de Bord**
+- Tableau de bord personnel
+- Suivi de progression
+- Rendez-vous à venir
+- Centre de notifications
 
-**Learning Module**
-- Video player with controls
-- Markdown content renderer
-- Quiz engine
-- Assignment submission (supporting markdown)
-- Progress tracking
-- Bookmark system
+**Module d'Apprentissage**
+- Lecteur vidéo avec contrôles
+- Rendu de contenu markdown
+- Moteur de quiz
+- Soumission de devoirs (supportant markdown)
+- Suivi de progression
+- Système de favoris
 
-**Course Management**
-- Course catalog with filters
-- Course details (markdown-rendered descriptions)
-- Enrollment system
-- Recommendation engine
+**Gestion de Cours**
+- Catalogue de cours avec filtres
+- Détails de cours (descriptions rendues en markdown)
+- Système d'inscription
+- Moteur de recommandation
 
-**Mentoring Module**
-- Appointment scheduling
-- Video conference integration
-- Chat system (with markdown support)
-- Session history
+**Module de Mentorat**
+- Planification de rendez-vous
+- Intégration de visioconférence
+- Système de chat (avec support markdown)
+- Historique des sessions
 
-**Gamification Module**
-- XP tracking
-- Badge system
-- Leaderboards
-- Achievement notifications
+**Module de Gamification**
+- Suivi d'XP
+- Système de badges
+- Classements
+- Notifications d'accomplissements
 
-## ⚙️ Backend Architecture
+## ⚙️ Architecture Backend
 
-### Project Structure
+### Structure du Projet
 ```
 app/
-├── api/                         # API routes
+├── api/                         # Routes API
 │   ├── v1/
 │   │   ├── auth/
 │   │   ├── courses/
@@ -191,211 +191,208 @@ app/
 │   │   ├── learning/
 │   │   ├── mentoring/
 │   │   └── admin/
-├── core/                        # Core functionality
+├── core/                        # Fonctionnalités principales
 │   ├── config.py
 │   ├── security.py
 │   ├── database.py
 │   └── deps.py
-├── models/                      # SQLAlchemy models
-├── schemas/                     # Pydantic schemas
-├── services/                    # Business logic
-├── tasks/                       # Celery tasks
-├── utils/                       # Utilities
+├── models/                      # Modèles SQLAlchemy
+├── schemas/                     # Schémas Pydantic
+├── services/                    # Logique métier
+├── tasks/                       # Tâches Celery
+├── utils/                       # Utilitaires
 └── main.py
 ```
 
-### Key Services
+### Services Clés
 
-**Authentication Service**
-- JWT token management with refresh tokens
-- OAuth2 integration (Google, Microsoft, GitHub)
-- Account linking and merging
-- Email verification for password accounts
-- Password hashing and validation
-- Session management and device tracking
+**Service d'Authentification**
+- Gestion des tokens JWT avec tokens de rafraîchissement
+- Intégration OAuth2 (Google, Microsoft, GitHub)
+- Liaison et fusion de comptes
+- Vérification email pour les comptes à mot de passe
+- Hachage et validation de mots de passe
+- Gestion de sessions et suivi d'appareils
 
-**Course Service**
-- Course CRUD operations
-- Enrollment management
-- Progress tracking
-- Content delivery
+**Service de Cours**
+- Opérations CRUD sur les cours
+- Gestion des inscriptions
+- Suivi de progression
+- Livraison de contenu
 
-**Learning Service**
-- Video streaming
-- Quiz processing
-- Assignment evaluation
-- Certificate generation
+**Service d'Apprentissage**
+- Streaming vidéo
+- Traitement de quiz
+- Évaluation de devoirs
+- Génération de certificats
 
-**Notification Service**
-- Email notifications
-- Push notifications
-- In-app notifications
+**Service de Notifications**
+- Notifications email
+- Notifications push
+- Notifications dans l'application
 
-**File Service**
-- Azure Blob Storage integration
-- Video processing
-- Secure file access
+**Service de Fichiers**
+- Intégration Azure Blob Storage
+- Traitement vidéo
+- Accès sécurisé aux fichiers
 
-**Analytics Service**
-- User progress analytics
-- Course performance metrics
-- Engagement tracking
+**Service d'Analytics**
+- Analytics de progression utilisateur
+- Métriques de performance des cours
+- Suivi d'engagement
 
+## 🚀 Flux de Développement & Phases
 
-## 🚀 Development Workflow & Phases
+### Phase 1 : Fondations (Semaines 1-4)
+**Priorité : Infrastructure Principale**
 
-### Phase 1: Foundation (Weeks 1-4)
-**Priority: Core Infrastructure**
+**Tâches Backend :**
+1. Configuration de la structure de projet FastAPI
+2. Configuration de la base de données PostgreSQL avec tables OAuth
+3. Implémentation des modèles SQLAlchemy (incluant oauth_accounts)
+4. Configuration du système d'authentification (JWT + OAuth2)
+5. Configuration OAuth Google, Microsoft et GitHub
+6. Création des opérations CRUD de base
+7. Configuration Azure Blob Storage
+8. Implémentation des endpoints API OAuth
+9. API de gestion des utilisateurs
 
-**Backend Tasks:**
-1. Setup FastAPI project structure
-2. Configure PostgreSQL database with OAuth tables
-3. Implement SQLAlchemy models (including oauth_accounts)
-4. Setup authentication system (JWT + OAuth2)
-5. Configure Google, Microsoft, and GitHub OAuth
-6. Create basic CRUD operations
-7. Setup Azure Blob Storage
-8. Implement OAuth API endpoints
-9. User management API
+**Tâches Frontend :**
+1. Configuration du projet Angular 20 avec Tailwind CSS et PrimeNg
+2. Configuration du routage et navigation (incluant callbacks OAuth)
+3. Implémentation des composants d'authentification avec boutons OAuth
+4. Création de la gestion des callbacks OAuth
+5. Création des composants UI partagés
+6. Configuration de la gestion d'état (Signals)
+7. Implémentation de la mise en page responsive
+8. Interface de gestion des utilisateurs
 
-**Frontend Tasks:**
-1. Setup Angular 20 project with Tailwind CSS and PrimeNg
-2. Configure routing and navigation (including OAuth callbacks)
-3. Implement authentication components with OAuth buttons
-4. Create OAuth callback handling
-5. Create shared UI components
-6. Setup state management (Signals)
-7. Implement responsive layout
-8. User management interface
+**Livrables :**
+- Système d'authentification fonctionnel (email/mot de passe + OAuth)
+- Intégration OAuth avec Google, Microsoft et GitHub
+- Liaison de comptes et gestion des utilisateurs
+- Fondation du projet prête
 
-**Deliverables:**
-- Working authentication system (email/password + OAuth)
-- OAuth integration with Google, Microsoft, and GitHub
-- Account linking and user management
-- Project foundation ready
+### Phase 2 : Fonctionnalités d'Apprentissage Principales (Semaines 5-8)
+**Priorité : Fonctionnalités d'Apprentissage Essentielles**
 
-### Phase 2: Core Learning Features (Weeks 5-8)
-**Priority: Essential Learning Functionality**
+**Tâches Backend :**
+1. APIs CMS de base - CRUD Cours, CRUD Module, CRUD Leçon
+2. Endpoints de streaming vidéo
+3. API système de quiz
+4. API de soumission de devoirs
+5. Suivi de progression
+6. Upload/téléchargement de fichiers
 
-**Backend Tasks:**
-1. Basic CMS APIs - Course CRUD, Module CRUD, Lesson CRUD
-2. Video streaming endpoints
-3. Quiz system API
-4. Assignment submission API
-5. Progress tracking
-6. File upload/download
+**Tâches Frontend :**
+1. Catalogue de cours avec recherche/filtres
+2. Intégration du lecteur vidéo
+3. Interface de quiz
+4. Formulaires de soumission de devoirs
+5. Tableau de bord de suivi de progression
+6. Système d'inscription aux cours
+7. Interface de Gestion de Contenu de base - Formulaires de création de cours
+8. Éditeur de texte riche - Éditeur markdown pour le contenu des leçons
 
-**Frontend Tasks:**
-1. Course catalog with search/filters
-2. Video player integration
-3. Quiz interface
-4. Assignment submission forms
-5. Progress tracking dashboard
-6. Course enrollment system
-7. Basic Content Management Interface - Course creation forms
-8. Rich text editor - Markdown editor for lesson content
+**Livrables :**
+- Expérience complète de visualisation de cours
+- Système de quiz et devoirs fonctionnel
+- Suivi de progression
 
-**Deliverables:**
-- Complete course viewing experience
-- Working quiz and assignment system
-- Progress tracking
+### Phase 3 : Fonctionnalités Avancées (Semaines 9-12)
+**Priorité : Expérience Utilisateur Améliorée**
 
-### Phase 3: Advanced Features (Weeks 9-12)
-**Priority: Enhanced User Experience**
+**Tâches Backend :**
+1. Fonctionnalités CMS avancées - Constructeur de quiz, Créateur de devoirs
+2. Flux de publication de contenu - États Brouillon/Révision/Publication
+3. API système de mentorat
+4. Système de chat/messagerie
+5. Système de notifications
+6. Génération de certificats
 
-**Backend Tasks:**
-1. Advanced CMS features - Quiz builder, Assignment creator
-2. Content publishing workflow - Draft/Review/Publish states
-3. Mentoring system API
-4. Chat/messaging system
-5. Notification system
-6. Certificate generation
+**Tâches Frontend :**
+1. Outils de Création de Contenu Avancés - Constructeur de quiz, Créateur de devoirs
+2. Système d'Aperçu de Contenu - Voir le contenu comme les étudiants le verront
+3. Interface de mentorat
+4. Chat en temps réel
+5. Système de notifications
+6. Affichage de certificats
 
-**Frontend Tasks:**
-1. Advanced Content Creation Tools - Quiz builder, Assignment creator
-2. Content Preview System - See content as students will
-3. Mentoring interface
-4. Real-time chat
-5. Notification system
-6. Certificate display
+**Livrables :**
+- Système de mentorat complet
+- Outils de gestion de contenu
 
-**Deliverables:**
-- Complete mentoring system
-- Content management tools
+### Phase 4 : Administration & Analytics (Semaines 13-16)
+**Priorité : Gestion et Insights**
 
-### Phase 4: Admin & Analytics (Weeks 13-16)
-**Priority: Management and Insights**
+**Tâches Backend :**
+1. API tableau de bord admin
+2. Backend de gamification
+3. API forum/communauté
+4. Analytics et rapports
+5. Surveillance système
+6. Optimisation des performances
 
-**Backend Tasks:**
-1. Admin dashboard API
-2. Gamification backend
-3. Forum/community API
-4. Analytics and reporting
-5. System monitoring
-6. Performance optimization
+**Tâches Frontend :**
+1. Tableau de bord admin
+2. Outils de Création de Contenu Avancés - Constructeur de quiz, Créateur de devoirs
+3. Interface de gamification
+4. Forum communautaire
+5. Tableau de bord analytics
+6. Interface de surveillance système
 
-**Frontend Tasks:**
-1. Admin dashboard
-2. Advanced Content Creation Tools - Quiz builder, Assignment creator
-3. Gamification UI
-4. Community forum
-5. Analytics dashboard
-6. System monitoring UI
+**Livrables :**
+- Système d'administration complet
+- Analytics et rapports
+- Fonctionnalités de gamification
+- Fonctionnalités communautaires
 
-**Deliverables:**
-- Complete admin system
-- Analytics and reporting
-- Gamification features
-- Community features
+### Phase 5 : Finition & Déploiement (Semaines 17-20)
+**Priorité : Préparation à la Production**
 
-### Phase 5: Polish & Deployment (Weeks 17-20)
-**Priority: Production Readiness**
-
-**Tasks:**
-1. Performance optimization
-2. Security hardening
-3. Testing and QA
+**Tâches :**
+1. Optimisation des performances
+2. Durcissement de la sécurité
+3. Tests et QA
 4. Documentation
-5. Deployment setup
-6. Monitoring and logging
+5. Configuration du déploiement
+6. Surveillance et logging
 
-**Deliverables:**
-- Production-ready application
-- Complete documentation
-- Monitoring and alerting setup
+**Livrables :**
+- Application prête pour la production
+- Documentation complète
+- Configuration de surveillance et alertes
 
-```
+## 📋 Considérations Clés d'Implémentation
 
-## 📋 Key Implementation Considerations
-
-### Security
-- Implement proper CORS configuration
-- Use HTTPS in production
-- Sanitize user inputs
-- Implement rate limiting
-- Secure file uploads
-- Use environment variables for secrets
+### Sécurité
+- Implémenter une configuration CORS appropriée
+- Utiliser HTTPS en production
+- Assainir les entrées utilisateur
+- Implémenter la limitation de débit
+- Sécuriser les uploads de fichiers
+- Utiliser des variables d'environnement pour les secrets
 
 ### Performance
-- Implement lazy loading for Angular modules
-- Use OnPush change detection strategy
-- Optimize database queries
-- Implement caching strategies
-- Use CDN for static assets
-- Compress images and videos
+- Implémenter le lazy loading pour les modules Angular
+- Utiliser la stratégie de détection de changement OnPush
+- Optimiser les requêtes de base de données
+- Implémenter des stratégies de cache
+- Utiliser un CDN pour les ressources statiques
+- Compresser les images et vidéos
 
-### Scalability
-- Design stateless APIs
-- Use horizontal scaling
-- Implement database indexing
-- Use async operations
-- Implement proper error handling
-- Monitor performance metrics
+### Évolutivité
+- Concevoir des APIs sans état
+- Utiliser la mise à l'échelle horizontale
+- Implémenter l'indexation de base de données
+- Utiliser des opérations asynchrones
+- Implémenter une gestion d'erreurs appropriée
+- Surveiller les métriques de performance
 
-### User Experience
-- Implement offline capabilities (PWA)
-- Add loading states and skeletons
-- Ensure mobile responsiveness
-- Implement proper error messages
-- Add keyboard navigation
-- Follow accessibility guidelines
+### Expérience Utilisateur
+- Implémenter les capacités hors ligne (PWA)
+- Ajouter des états de chargement et squelettes
+- Assurer la réactivité mobile
+- Implémenter des messages d'erreur appropriés
+- Ajouter la navigation au clavier
+- Suivre les directives d'accessibilité
