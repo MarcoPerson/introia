@@ -335,11 +335,10 @@ app/
 
 **Tâches Frontend :**
 1. Tableau de bord admin
-2. Outils de Création de Contenu Avancés - Constructeur de quiz, Créateur de devoirs
-3. Interface de gamification
-4. Forum communautaire
-5. Tableau de bord analytics
-6. Interface de surveillance système
+2. Interface de gamification
+3. Forum communautaire
+4. Tableau de bord analytics
+5. Interface de surveillance système
 
 **Livrables :**
 - Système d'administration complet
